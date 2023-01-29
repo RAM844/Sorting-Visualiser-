@@ -100,11 +100,11 @@ function NewBars() {
 async function selectionSort() {
     running = true;
     // Loop through the entire array
-    for (let i = 0; i < arr.length && running; i++) {
+    for (let i = 0; i < arrnum && running; i++) {
         // Assume the first element is the smallest
         let minIndex = i;
         // Compare the current element to all other elements
-        for (let j = i + 1; j < arr.length && running; j++) {
+        for (let j = i + 1; j < arrnum && running; j++) {
             // If a smaller element is found, update the minIndex
             if (arr[j] < arr[minIndex]) {
                 minIndex = j;
@@ -133,7 +133,7 @@ async function selectionSort() {
 async function insertionSort() {
     running=true;
     // Loop through the entire array
-    for (let i = 1; i < arr.length && running; i++) {
+    for (let i = 1; i < arrnum && running; i++) {
         // Assign the current element to a variable
         let current = arr[i];
         // Assign the index of the previous element to a variable
@@ -163,7 +163,7 @@ async function insertionSort() {
 //Quick Sort
 function quickStart(){
     running=true;
-    arr =  quickSortVisual(arr,0,arr.length-1);
+    arr =  quickSortVisual(arr,0,arrnum-1);
 }
 
 // Function to perform quick sort and update the visual representation of the array
