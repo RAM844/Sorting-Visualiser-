@@ -14,13 +14,17 @@
 .btn{
     padding: 3px 15px;
     border-radius: 20px;
-    border: none;
+    border: #fff 2px solid;
     margin: 0px 5px;
     font-size: 16px;
     transition: 300ms;
+    cursor: pointer;
+    background-color: transparent;
+    color: #fff;
 }
 .btn:hover{
-    font-size: 18px;
+    border: dotted 2.5px ;
+    font-size: 17px;
 }
 
 
@@ -30,7 +34,7 @@
 }
 #bars{
     margin: auto;
-    height: 600px;
+    height: 560px;
     width: 95vw;
     padding: 10px 20px ;
     display: flex;

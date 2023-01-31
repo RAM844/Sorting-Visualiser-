@@ -220,73 +220,37 @@ async function swap(arr,i, j) {
 
 //Merge sort
 function mergeStart(){
-    mergeSort(arr, swap1);
+    console.log(arr);
+    mergeSort(arr);
+    console.log(arr);
+    
 }
-function merge(left, right, swap) {
+function mergeSort(array) {
+    if (array.length <= 1) {
+      return array;
+    }
+  
+    const middle = Math.floor(array.length / 2);
+    const left = array.slice(0, middle);
+    const right = array.slice(middle);
+  
+    return merge(mergeSort(left), mergeSort(right));
+  }
+  
+  function merge(left, right) {
     let result = [];
-    let i = 0;
-    let j = 0;
-
-    // Compare the elements of the two arrays and add the smaller one to the result array
-    while (i < left.length && j < right.length) {
-        if (left[i] < right[j]) {
-            result.push(left[i]);
-            i++;
-        } else {
-            result.push(right[j]);
-            j++;
-        }
+    let leftIndex = 0;
+    let rightIndex = 0;
+  
+    while (leftIndex < left.length && rightIndex < right.length) {
+      if (left[leftIndex] < right[rightIndex]) {
+        result.push(left[leftIndex]);
+        leftIndex++;
+      } else {
+        result.push(right[rightIndex]);
+        rightIndex++;
+      }
     }
-
-    // Add any remaining elements from the left array
-    while (i < left.length) {
-        result.push(left[i]);
-        i++;
-    }
-
-    // Add any remaining elements from the right array
-    while (j < right.length) {
-        result.push(right[j]);
-        j++;
-    }
-
-    // swap elements
-    for (let i = 0; i < result.length; i++) {
-        swap(i, result[i]);
-    }
-    return result;
-}
-// The main merge sort function
-function mergeSort(arr, swap) {
-    if (arr.length < 2) {
-        // The array is already sorted if it has less than 2 elements
-        return arr;
-    }
-
-    // Split the array in half
-    let middle = Math.floor(arr.length / 2);
-    let left = arr.slice(0, middle);
-    let right = arr.slice(middle);
-
-    // Recursively sort the left and right halves
-    left = mergeSort(left, swap);
-    right = mergeSort(right, swap);
-
-    // Merge the sorted left and right halves
-    return merge(left, right, swap);
-}
-
-async function swap1(i,j) {
-    let temp = i;
-    i=j;
-    j=i;
-     // Update the visual representation of the array
-     let bar1 = document.getElementsByClassName(`bar${i}`)[0];
-     let bar2 = document.getElementsByClassName(`bar${j}`)[0];
-     bar1.style.background = "blue";
-     bar2.style.background = "red";
-     await sleep(delay);
-     updateBars(arr, i, j);
-     bar1.style.background = "linear-gradient(to  bottom,#36454F, #6082b6cf)";
-     bar2.style.background = "linear-gradient(to  bottom,#36454F, #6082b6cf)";
-}
+  
+    return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  }
